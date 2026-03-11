@@ -1,0 +1,66 @@
+import random
+
+POINTS_NEEDED = 20
+
+def turn(name):
+    bank = 0
+    while True:
+        dice_value = dice_roll()
+        print(f"{name} rolled a {dice_value}")
+        if dice_value >=2 and dice_value <= 5:
+            bank += dice_value
+            while True:
+                choice = input("Enter 1 to bank your points and roll again. Enter 2 to lock them in: ")
+                if choice == "1":
+                    print(f"{name} now has {bank} points in the bank")
+                    break
+                elif choice == "2":
+                    return bank
+                else:
+                    print("Enter a valid option")
+        else: 
+            bank = 0
+            print(f"{name} turn ended")
+            return bank
+
+
+def dice_roll():
+    value = random.randint(1,6)
+    return value
+
+def scoreboard(p1_name, p2_name, p1_score, p2_score):
+    
+    print(f"{"TOTALSCORE":^20}")
+    print("-" * 20)
+    print(f"{p1_name:<10} | {p1_score:>5}")
+    print(f"{p2_name:<10} | {p2_score:>5}")
+
+
+def main_menu(p1_name, p2_name):
+    print("Welcome to the risk game")
+    p1_score = 0
+    p2_score = 0
+    while p1_score < POINTS_NEEDED and p2_score < POINTS_NEEDED:
+        p1_score += turn(p1_name)
+        scoreboard(p1_name, p2_name, p1_score, p2_score)
+
+        if p1_score >= POINTS_NEEDED:
+            break
+        p2_score += turn(p2_name)
+        scoreboard(p1_name, p2_name, p1_score, p2_score)
+
+        if p2_score >= POINTS_NEEDED:
+            break 
+    check_win(p1_score, p2_score, p1_name, p2_name)
+
+
+def check_win(p1_score, p2_score, p1_name, p2_name):
+    if p1_score >= POINTS_NEEDED:
+        print(f"Congratulations {p1_name} you win!")
+    elif p2_score >= POINTS_NEEDED: 
+        print(f"Congratulations {p2_name} you win!")
+
+p1_name = input("Enter Player 1 name: ")
+p2_name = input("Enter Player 2 name: ")
+
+main_menu(p1_name, p2_name)
