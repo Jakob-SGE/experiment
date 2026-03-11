@@ -1,6 +1,8 @@
 import random
 
-POINTS_NEEDED = 20
+POINTS_NEEDED = 5
+
+winners = []
 
 def turn(name):
     bank = 0
@@ -52,14 +54,38 @@ def main_menu(p1_name, p2_name):
         if p2_score >= POINTS_NEEDED:
             break 
     check_win(p1_score, p2_score, p1_name, p2_name)
+    endgame_menu()
 
 
 def check_win(p1_score, p2_score, p1_name, p2_name):
     if p1_score >= POINTS_NEEDED:
         print(f"Congratulations {p1_name} you win!")
+        winners.append(p1_name)
     elif p2_score >= POINTS_NEEDED: 
         print(f"Congratulations {p2_name} you win!")
+        winners.append(p2_name)
 
+def endgame_menu():
+    print(f"{"GAME END":.^20}")
+    print("Press 1 to play again")
+    print("Press 2 to see the winners history")
+    while True: 
+        choice = input("Enter your option: ")
+        if choice == "1":
+            main_menu(p1_name, p2_name)
+        elif choice == "2":
+            count = 1
+            for winner in winners:
+                print(f"The {count}. winner was {winner}")
+        else:
+            print("Enter a valid option")
+            
+           
+            
+            
+
+
+   
 p1_name = input("Enter Player 1 name: ")
 p2_name = input("Enter Player 2 name: ")
 
