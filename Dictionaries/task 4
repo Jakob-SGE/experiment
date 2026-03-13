@@ -1,0 +1,4 @@
+cars = {"car1" : {"Brand" : "BMW", "Model" : "M5", "Year" : "2018"}, "car2" : {"Brand" : "Toyota", "Model" : "Corrola", "Year" : "2016"}, "car3" : {"Brand" : "Audi", "Model" : "A5", "Year" : "2021"}}
+print(cars["car1"])
+for c, key in cars.items():
+    print(f"{c}: Brand: {key["Brand"]}, Model: {key["Model"]}, Year: {key["Year"]}")
