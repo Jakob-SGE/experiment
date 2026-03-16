@@ -1,6 +1,6 @@
 import random
 
-POINTS_NEEDED = 5
+POINTS_NEEDED = 20
 
 winners = []
 
