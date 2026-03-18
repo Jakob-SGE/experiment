@@ -6,3 +6,5 @@ print(f"{students["student1"]['first name']} {students["student1"]['Surname']} i
 for subject in students["student1"]["subjects"]:
     print(subject)
 
+for subject in students:
+    print(subject["subject"])
